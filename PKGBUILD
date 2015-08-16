@@ -1,0 +1,25 @@
+# Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+
+pkgname=kmsponies4ponysay
+pkgver=1.0
+pkgrel=3
+pkgdesc="Improving TTY support under KMS support for ponysay<2"
+arch=('any')
+url="https://github.com/maandree/kmsponies4ponysay"
+license=('GPL3')
+depends=('coreutils' 'bash' 'sed' 'util-say<2' 'ponysay<2')
+makedepends=('coreutils')
+provides=('kmsponies4ponysay')
+conflicts=('kmsponies4ponysay')
+source=(https://github.com/maandree/kmsponies4ponysay/tarball/1.0)
+md5sums=(182ef4d957d535935679098f267dd68e)
+
+build() {
+  cd maandree-kmsponies4ponysay-4ab814d
+  make -B
+}
+
+package() {
+  cd maandree-kmsponies4ponysay-4ab814d
+  make DESTDIR="$pkgdir/" install
+}
